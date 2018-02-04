@@ -9,9 +9,11 @@ Creating new PowerShell DSC Configurations can be annoying. Creating configurati
 To use this yeoman generator, you must have node installed.
 
 This will install the yeoman generator
+
 `$ npm install yo`
 
 This will install this PowerShell DSC Generator
+
 `$ npm install generator-powershell-dsc`
 
 ## Usage
