@@ -1,0 +1,54 @@
+{
+    "name": "generator-powershell-dsc",
+    "version": "0.1.0",
+    "description": "PowerShell DSC tools build for VS Code. This generator allows you to create PowerShell DSC Configurations.",
+    "author": {
+        "name": "Andi Kruger",
+        "email": "solutions@andikrueger.de",
+        "url": "https://andikrueger.de"
+    },
+    "license": "MIT",
+    "files": [
+        "generators"
+    ],
+    "main": "generators/index.js",
+    "keywords": [
+        "PowerShell",
+        "Desired State Configuration",
+        "yeoman-generator"
+    ],
+    "dependencies": {
+        "chalk": "^2.3.0",
+        "yeoman-generator": "^1.1.1"
+    },
+    "devDependencies": {
+        "@types/chalk": "^2.2.0",
+        "@types/yeoman-generator": "^2.0.1",
+        "concurrently": "^3.5.1",
+        "cpx": "^1.5.0",
+        "prettier": "^1.10.2",
+        "rimraf": "^2.6.2",
+        "tslint": "^5.9.1",
+        "tslint-config-prettier": "^1.7.0",
+        "tslint-eslint-rules": "^4.1.1",
+        "typescript": "^2.7.1"
+    },
+    "scripts": {
+        "pretest": "tslint 'src/**/*.ts' --fix --force",
+        "precommit": "lint-commit",
+        "copy": "cpx \"src/**/*.!(ts)\" generators/ --include-empty-dirs",
+        "copy-watch": "cpx \"src/**/*.!(ts)\" generators --watch --include-empty-dirs",
+        "tsc": "tsc -p tsconfig.json",
+        "tsc-watch": "tsc -p tsconfig.json -w",
+        "start": "rimraf generators && concurrently \"npm run tsc-watch\" \"npm run copy-watch\"",
+        "build": "rimraf generators && concurrently \"npm run tsc\" \"npm run copy\"",
+        "test": "mocha -r ts-node/register generators/test/**.js",
+        "publish": "npm run build & npm link"
+    },
+    "lint-commit": {
+        "*.js": [
+            "tslint 'src/**/*.ts' --fix --force",
+            "git add"
+        ]
+    }
+}
