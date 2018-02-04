@@ -5,6 +5,7 @@ import * as Generator from "yeoman-generator";
 
 
 module.exports = class App extends Generator {
+    private props: any = {};
     constructor(args, options) {
         super(args, options);
         this.appname = 'PowerShell DSC Template Generator';
@@ -21,12 +22,13 @@ module.exports = class App extends Generator {
 
     public async prompting() {
         const askForConfigurationName: Generator.Questions = [{
-            message: 'Whats the name of your configuration?',
+            message: 'What is the name of your configuration?',
             name: 'ConfigurationName',
             store: true,
             type: 'input'
         }];
         const answerForConfigurationName = await this.prompt(askForConfigurationName);
+        this.props.ConfigurationName = answerForConfigurationName.ConfigurationName;
     };
 
     public writing() {
@@ -36,15 +38,15 @@ module.exports = class App extends Generator {
         );
 
         this.fs.copy(
-            this.templatePath('MOF'),
-            this.destinationPath('MOF')
+            this.templatePath('MOF/.empty'),
+            this.destinationPath('MOF/.empty')
         );
 
         this.fs.copyTpl(
             this.templatePath('Configuration.ps1'),
             this.destinationPath('Configuration.ps1'),
             {
-                ConfigurationName: this.config.get('ConfigurationName')
+                ConfigurationName: this.props.ConfigurationName
             }
         );
 
@@ -62,7 +64,7 @@ module.exports = class App extends Generator {
             this.templatePath('Start-Configuration.psm1'),
             this.destinationPath('Start-Configuration.psm1'),
             {
-                ConfigurationName: this.config.get('ConfigurationName')
+                ConfigurationName: this.props.ConfigurationName
             }
         );
     }
