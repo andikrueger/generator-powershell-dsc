@@ -1,7 +1,7 @@
 # PowerShell DSC Template Generator
 
-[![npm version](https://badge.fury.io/js/generator-powershell-dsc.svg)](http://badge.fury.io/js/generator-powershell-dsc.)
-[![Downloads](http://img.shields.io/npm/dm/generator-powershell-dsc.svg)](https://npmjs.org/package/generator-powershell-dsc.)
+[![npm version](https://badge.fury.io/js/generator-powershell-dsc.svg)](http://badge.fury.io/js/generator-powershell-dsc)
+[![Downloads](http://img.shields.io/npm/dm/generator-powershell-dsc.svg)](https://npmjs.org/package/generator-powershell-dsc)
 [![MIT license](https://img.shields.io/npm/l/express.svg)](https://github.com/andikrueger/generator-powershell-dsc/blob/master/LICENSE)
 
 Creating new PowerShell DSC Configurations can be annoying. Creating configurations, configuration Data structures and writing scripts to install dsc resources should be easier. This generator helps you to create these default files in a blink.
